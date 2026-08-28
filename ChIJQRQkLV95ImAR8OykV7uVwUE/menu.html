@@ -19,6 +19,31 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Zen+Old+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  .sample-watermark {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 99999;
+    overflow: hidden;
+  }
+  .sample-watermark span {
+    font-family: Arial, sans-serif;
+    font-size: 9rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: rgba(120, 120, 120, 0.16);
+    transform: rotate(-30deg);
+    white-space: nowrap;
+    user-select: none;
+  }
+  @media (max-width: 640px) {
+    .sample-watermark span { font-size: 4.5rem; }
+  }
+</style>
 </head>
 <body data-page="menu">
 
@@ -156,5 +181,6 @@
 </footer>
 
 <script src="script.js"></script>
+<div class="sample-watermark" aria-hidden="true"><span>SAMPLE</span></div>
 </body>
 </html>
