@@ -52,6 +52,31 @@
 </script>
 <!-- 営業時間(openingHoursSpecification)・価格帯(priceRange)・提供料理ジャンル(servesCuisine)・メニュー品目は
      未確定情報のため構造化データに含めていません。確定次第、クライアント確認のうえ追記してください。 -->
+<style>
+  .sample-watermark {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 99999;
+    overflow: hidden;
+  }
+  .sample-watermark span {
+    font-family: Arial, sans-serif;
+    font-size: 9rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: rgba(120, 120, 120, 0.16);
+    transform: rotate(-30deg);
+    white-space: nowrap;
+    user-select: none;
+  }
+  @media (max-width: 640px) {
+    .sample-watermark span { font-size: 4.5rem; }
+  }
+</style>
 </head>
 <body>
 
@@ -253,5 +278,6 @@
 </footer>
 
 <script src="assets/js/script.js"></script>
+<div class="sample-watermark" aria-hidden="true"><span>SAMPLE</span></div>
 </body>
 </html>
