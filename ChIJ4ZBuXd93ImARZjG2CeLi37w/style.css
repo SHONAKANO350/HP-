@@ -1,0 +1,792 @@
+/* 沖縄料理 呑み食い処ちゃ～がんじゅう 共通スタイル */
+
+:root {
+  --color-bg: #faf5ec;
+  --color-bg-alt: #f1e6d2;
+  --color-surface: #ffffff;
+  --color-primary: #b3492b;
+  --color-primary-dark: #8f371f;
+  --color-accent: #c98d2e;
+  --color-text: #2b241c;
+  --color-text-muted: #6b6055;
+  --color-border: #e4d5ba;
+  --header-height: 64px;
+  --radius: 10px;
+  --max-width: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic Medium", "Meiryo", sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- ヘッダー ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: var(--header-height);
+}
+
+.site-logo {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phone-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.phone-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+.phone-icon {
+  font-size: 0.95rem;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--color-text);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle.is-active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.is-active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.site-nav {
+  position: absolute;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.site-nav.is-open {
+  max-height: 320px;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 16px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-nav a {
+  display: block;
+  padding: 12px 8px;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--color-primary);
+}
+
+/* ---------- ヒーロー ---------- */
+
+.hero {
+  position: relative;
+  min-height: 56vh;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-primary-dark);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 14, 8, 0.35) 0%, rgba(20, 14, 8, 0.75) 100%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 40px 20px 28px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.hero-lead {
+  font-size: 0.95rem;
+  margin: 0 0 20px;
+  color: #f3ece1;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-credit {
+  position: relative;
+  z-index: 1;
+  text-align: right;
+  padding: 0 16px 10px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-credit a {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.hero.hero--plain {
+  background: linear-gradient(160deg, var(--color-bg-alt), var(--color-bg));
+  color: var(--color-text);
+  min-height: 40vh;
+}
+
+.hero.hero--plain::before {
+  content: none;
+}
+
+.hero.hero--plain .hero-lead {
+  color: var(--color-text-muted);
+}
+
+.hero-note {
+  position: relative;
+  z-index: 1;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ---------- ボタン ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* ---------- セクション共通 ---------- */
+
+.section {
+  padding: 48px 0;
+}
+
+.section--alt {
+  background: var(--color-bg-alt);
+}
+
+.section-title {
+  font-size: 1.3rem;
+  margin: 0 0 8px;
+}
+
+.section-lead {
+  color: var(--color-text-muted);
+  margin: 0 0 28px;
+}
+
+.section-lead:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- カード(ハイライト) ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.card-icon {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-size: 1.02rem;
+  margin: 0 0 8px;
+}
+
+.card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- 写真ギャラリー ---------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.photo-block {
+  margin: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.photo-block img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.photo-block figcaption {
+  padding: 14px 16px;
+}
+
+.photo-caption {
+  display: block;
+  font-size: 0.92rem;
+  margin-bottom: 8px;
+}
+
+.photo-credit {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.photo-credit a {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+}
+
+/* ---------- カテゴリブロック(menu.html) ---------- */
+
+.menu-category {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.menu-category:last-of-type {
+  border-bottom: none;
+}
+
+.menu-category-photos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.menu-category-photos.is-double {
+  grid-template-columns: 1fr 1fr;
+}
+
+.menu-category-text h3 {
+  font-size: 1.1rem;
+  margin: 0 0 10px;
+}
+
+.menu-category-text p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+/* ---------- CTAブロック ---------- */
+
+.cta-block {
+  background: var(--color-primary-dark);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.cta-block p {
+  margin: 0 0 18px;
+  color: #f3ece1;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cta-block .btn-secondary {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* ---------- 店舗情報テーブル ---------- */
+
+.info-table {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row dt {
+  font-weight: 700;
+  padding: 14px 18px 4px;
+  font-size: 0.85rem;
+  color: var(--color-primary-dark);
+}
+
+.info-row dd {
+  margin: 0;
+  padding: 0 18px 14px;
+  color: var(--color-text);
+}
+
+.info-placeholder {
+  color: var(--color-text-muted);
+  font-style: normal;
+}
+
+/* ---------- 地図・SNS ---------- */
+
+.map-wrap {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.map-wrap iframe {
+  width: 100%;
+  height: 320px;
+  border: 0;
+  display: block;
+}
+
+.map-actions {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sns-block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+}
+
+.sns-block h2 {
+  margin: 0 0 14px;
+  font-size: 1.05rem;
+}
+
+.tel-cta {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius);
+}
+
+.tel-cta h2 {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+}
+
+.tel-cta .btn-primary {
+  font-size: 1.15rem;
+  padding: 16px 30px;
+}
+
+/* ---------- クチコミ ---------- */
+
+.review-summary {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 22px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.review-summary .stars {
+  color: var(--color-accent);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.review-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.review-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.review-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+}
+
+.review-author {
+  font-weight: 700;
+}
+
+.review-author a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.review-stars {
+  color: var(--color-accent);
+  letter-spacing: 1px;
+}
+
+.review-time {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+.review-body {
+  margin: 0;
+  color: var(--color-text);
+}
+
+/* ---------- リスト(こんな方におすすめ) ---------- */
+
+.recommend-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.recommend-list li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.recommend-list li::before {
+  content: "◎";
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* ---------- フッター ---------- */
+
+.site-footer {
+  background: #241b13;
+  color: #ece2d2;
+  padding: 36px 0 24px;
+  margin-top: 48px;
+}
+
+.footer-name {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0 0 10px;
+}
+
+.site-footer p {
+  margin: 0 0 8px;
+  font-size: 0.88rem;
+  color: #d9cdb8;
+}
+
+.site-footer a {
+  color: #ece2d2;
+  text-decoration: underline;
+}
+
+.footer-note {
+  margin-top: 18px;
+  font-size: 0.75rem;
+  color: #9c8f78;
+}
+
+/* ---------- レイアウトユーティリティ ---------- */
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.two-col-text h2 {
+  font-size: 1.2rem;
+  margin: 0 0 14px;
+}
+
+.two-col-text p {
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ---------- タブレット以上 ---------- */
+
+@media (min-width: 768px) {
+  .header-inner {
+    padding: 14px 24px;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .site-nav {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    border-bottom: none;
+    background: none;
+  }
+
+  .site-nav ul {
+    flex-direction: row;
+    padding: 0;
+    gap: 22px;
+  }
+
+  .site-nav a {
+    padding: 8px 2px;
+    border-bottom: 2px solid transparent;
+  }
+
+  .site-nav a[aria-current="page"] {
+    border-bottom-color: var(--color-primary);
+  }
+
+  .header-inner {
+    flex-wrap: nowrap;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .menu-category {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .recommend-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .two-col {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .info-row {
+    grid-template-columns: 200px 1fr;
+  }
+
+  .info-row dt {
+    padding: 16px 18px;
+  }
+
+  .info-row dd {
+    padding: 16px 18px;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-lead {
+    font-size: 1.05rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hero {
+    min-height: 62vh;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
