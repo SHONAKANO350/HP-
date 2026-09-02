@@ -1,45 +1,60 @@
-// ハンバーガーメニュー開閉(モバイルナビ)
+// CAFE&BAKE Lily's — script.js
+// モバイルナビの開閉、ギャラリーのライトボックス表示のみを扱う（過剰な演出は追加しない）
 document.addEventListener("DOMContentLoaded", function () {
-  var hamburger = document.getElementById("hamburger");
-  var nav = document.getElementById("main-nav");
+  // ---- ハンバーガーメニュー開閉 ----
+  var toggle = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("global-nav");
 
-  if (hamburger && nav) {
-    hamburger.addEventListener("click", function () {
+  if (toggle && nav) {
+    toggle.addEventListener("click", function () {
       var isOpen = nav.classList.toggle("is-open");
-      hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      toggle.setAttribute("aria-label", isOpen ? "メニューを閉じる" : "メニューを開く");
     });
 
     nav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
         nav.classList.remove("is-open");
-        hamburger.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "メニューを開く");
       });
     });
   }
 
-  // ギャラリーライトボックス(gallery.htmlのみ該当要素が存在)
+  // ---- ギャラリー ライトボックス ----
   var lightbox = document.getElementById("lightbox");
   if (!lightbox) return;
 
-  var lightboxImg = lightbox.querySelector("[data-lightbox-img]");
-  var lightboxCaption = lightbox.querySelector("[data-lightbox-caption]");
-  var closeBtn = lightbox.querySelector("[data-lightbox-close]");
+  var lightboxImg = lightbox.querySelector("img");
+  var lightboxCaption = lightbox.querySelector(".lightbox-caption");
+  var lightboxClose = lightbox.querySelector(".lightbox-close");
+  var triggers = document.querySelectorAll("[data-lightbox-src]");
 
-  document.querySelectorAll("[data-lightbox-trigger]").forEach(function (trigger) {
-    trigger.addEventListener("click", function () {
-      lightboxImg.src = trigger.getAttribute("data-full");
-      lightboxImg.alt = trigger.getAttribute("data-alt") || "";
-      lightboxCaption.textContent = trigger.getAttribute("data-caption") || "";
-      lightbox.classList.add("is-open");
-    });
-  });
+  function openLightbox(src, alt, caption) {
+    lightboxImg.setAttribute("src", src);
+    lightboxImg.setAttribute("alt", alt || "");
+    lightboxCaption.textContent = caption || "";
+    lightbox.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  }
 
   function closeLightbox() {
     lightbox.classList.remove("is-open");
-    lightboxImg.src = "";
+    lightboxImg.setAttribute("src", "");
+    document.body.style.overflow = "";
   }
 
-  closeBtn.addEventListener("click", closeLightbox);
+  triggers.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      openLightbox(
+        btn.getAttribute("data-lightbox-src"),
+        btn.getAttribute("data-lightbox-alt"),
+        btn.getAttribute("data-lightbox-caption")
+      );
+    });
+  });
+
+  lightboxClose.addEventListener("click", closeLightbox);
   lightbox.addEventListener("click", function (e) {
     if (e.target === lightbox) closeLightbox();
   });
