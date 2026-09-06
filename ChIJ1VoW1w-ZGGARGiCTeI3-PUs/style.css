@@ -1,0 +1,1122 @@
+/* 竹泉（ちくせん） 営業提案用試作HP 共通スタイル */
+
+:root {
+  --yanicha: #332A1F;
+  --banju: #DDD6C4;
+  --chochin: #C9481E;
+  --chochin-dark: #A73B18;
+  --norenai: #1E4B52;
+  --beer: #F0C22E;
+  --kakuni: #8B4A26;
+  --edamame: #6B7A4F;
+  --sumi: #2B2420;
+  --kinari: #EDE4D2;
+  --card-paper: #F1ECDF;
+  --review-paper: #FBF8F1;
+
+  --font-serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "MS PMincho", serif;
+  --font-gothic: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "Yu Gothic", "Meiryo", sans-serif;
+
+  --header-h: 128px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 84px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-gothic);
+  color: var(--sumi);
+  background: var(--banju);
+  line-height: 1.85;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-gothic);
+  line-height: 1.5;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+section[id] {
+  scroll-margin-top: var(--header-h);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--chochin);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+/* ---------- SAMPLE 透かし ---------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(43, 36, 32, 0.055) 0,
+    rgba(43, 36, 32, 0.055) 2px,
+    transparent 2px,
+    transparent 46px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+body::after {
+  content: "SAMPLE";
+  position: fixed;
+  top: 54px;
+  right: -74px;
+  transform: rotate(38deg);
+  display: block;
+  width: 320px;
+  text-align: center;
+  font-family: var(--font-gothic);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  font-size: 1.15rem;
+  color: #fff;
+  background: rgba(201, 72, 30, 0.82);
+  padding: 0.4rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ---------- レイアウト共通 ---------- */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.zone-day,
+.zone-night {
+  padding: 3.5rem 0;
+}
+
+.zone-day {
+  background: var(--banju);
+  color: var(--sumi);
+}
+
+.zone-night {
+  background: var(--yanicha);
+  color: var(--kinari);
+}
+
+.section-heading {
+  font-size: 1.7rem;
+  font-weight: 700;
+  padding-bottom: 0.7rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--chochin);
+}
+
+.zone-night .section-heading::after {
+  background: var(--beer);
+}
+
+.section-sub {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.lead-text {
+  max-width: 680px;
+  margin-bottom: 2rem;
+}
+
+.text-link {
+  color: var(--chochin);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.zone-night .text-link {
+  color: var(--beer);
+}
+
+/* ---------- ヘッダー ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--yanicha);
+  color: var(--kinari);
+  border-bottom: 3px solid var(--norenai);
+}
+
+.site-header__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.7rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: 0.12em;
+  color: var(--kinari);
+  order: 1;
+}
+
+.header-cta {
+  order: 2;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--chochin);
+  color: #fff;
+  padding: 0.45rem 0.9rem;
+  border-radius: 4px;
+  font-weight: 700;
+  line-height: 1.3;
+  transition: background-color 0.2s ease;
+}
+
+.header-cta:hover {
+  background: var(--chochin-dark);
+}
+
+.header-cta__label {
+  font-size: 0.68rem;
+}
+
+.header-cta__number {
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+}
+
+.main-nav {
+  order: 3;
+  flex-basis: 100%;
+  overflow-x: auto;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 1.25rem;
+  white-space: nowrap;
+}
+
+.main-nav a {
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 0.3rem 0.1rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.main-nav a:hover {
+  border-color: var(--beer);
+}
+
+@media (min-width: 768px) {
+  .site-header__inner {
+    flex-wrap: nowrap;
+  }
+  .main-nav {
+    order: 2;
+    flex-basis: auto;
+  }
+  .header-cta {
+    order: 3;
+  }
+}
+
+/* ---------- フッター ---------- */
+.site-footer {
+  background: var(--yanicha);
+  color: var(--kinari);
+  padding: 3rem 0 1.5rem;
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+  justify-content: space-between;
+}
+
+.footer-block__title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-block p {
+  margin: 0 0 0.4rem;
+  font-size: 0.92rem;
+}
+
+.footer-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.3rem;
+}
+
+.footer-nav a {
+  font-size: 0.9rem;
+}
+
+.footer-nav a:hover {
+  color: var(--beer);
+}
+
+.footer-map-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  color: var(--beer);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-note {
+  margin-top: 2.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(237, 228, 210, 0.2);
+  font-size: 0.72rem;
+  opacity: 0.75;
+}
+
+/* ---------- ボタン ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.85rem 1.7rem;
+  border-radius: 4px;
+  font-weight: 700;
+  border: 2px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--chochin);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--chochin-dark);
+}
+
+.btn-outline {
+  border-color: currentColor;
+  background: transparent;
+  color: inherit;
+}
+
+.zone-day .btn-outline:hover,
+.btn-outline.on-light:hover {
+  background: rgba(43, 36, 32, 0.08);
+}
+
+.zone-night .btn-outline:hover,
+.btn-outline.on-dark:hover {
+  background: rgba(237, 228, 210, 0.12);
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- 暖簾（のれん）モチーフ ---------- */
+.noren-band {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.noren-band__panel {
+  flex: 1;
+  background: linear-gradient(180deg, var(--norenai) 0%, #163539 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 74%, 50% 100%, 0 74%);
+}
+
+.noren-band__panel:nth-child(even) {
+  background: linear-gradient(180deg, #235a62 0%, var(--norenai) 100%);
+}
+
+.noren-band__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--kinari);
+  font-size: 1.5rem;
+  letter-spacing: 0.35em;
+  pointer-events: none;
+}
+
+.noren-divider {
+  height: 64px;
+}
+
+.noren-divider .noren-band__label {
+  font-size: 1rem;
+  letter-spacing: 0.5em;
+}
+
+/* ---------- 昼夜スプリットヒーロー ---------- */
+.hero-split {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-split__day,
+.hero-split__night {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.hero-split__day {
+  background: var(--banju);
+  color: var(--sumi);
+}
+
+.hero-split__night {
+  background: linear-gradient(160deg, var(--yanicha) 55%, #241c14 100%);
+  color: var(--kinari);
+}
+
+.hero-split__eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.hero-split__heading {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.hero-split__noren {
+  height: 100px;
+  position: relative;
+}
+
+.hero-split__catch {
+  text-align: center;
+  padding: 2rem 1.25rem 1rem;
+  background: var(--yanicha);
+  color: var(--kinari);
+}
+
+.hero-split__catch h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.9rem;
+}
+
+.hero-split__catch p {
+  max-width: 640px;
+  margin: 0 auto;
+  opacity: 0.92;
+}
+
+.hero-split__cta {
+  padding: 1.75rem 1.25rem 2.5rem;
+  background: var(--yanicha);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .hero-split {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .hero-split__day,
+  .hero-split__night {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 2.5rem;
+  }
+  .hero-split__noren {
+    width: 120px;
+    height: auto;
+    flex-shrink: 0;
+  }
+  .hero-split__noren .noren-band__label {
+    writing-mode: vertical-rl;
+    letter-spacing: 0.5em;
+  }
+}
+
+/* ---------- 換気扇ファンモチーフ ---------- */
+.fan-motif {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  background: repeating-conic-gradient(var(--norenai) 0deg 14deg, var(--yanicha) 14deg 30deg);
+  border: 3px solid var(--beer);
+  position: relative;
+}
+
+.fan-motif::after {
+  content: "";
+  position: absolute;
+  inset: 36%;
+  border-radius: 50%;
+  background: var(--beer);
+}
+
+.fan-motif--small {
+  width: 56px;
+  height: 56px;
+}
+
+/* ---------- 赤提灯モチーフ ---------- */
+.chochin-motif {
+  width: 84px;
+  height: 104px;
+  margin: 0 auto 1rem;
+  position: relative;
+}
+
+.chochin-motif::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--chochin);
+  border: 3px solid var(--beer);
+  box-shadow: inset 0 0 0 3px var(--chochin-dark);
+}
+
+.chochin-motif::after {
+  content: "泉";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--beer);
+}
+
+.chochin-motif__cap-top,
+.chochin-motif__cap-bottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 8px;
+  background: var(--sumi);
+  border-radius: 2px;
+}
+
+.chochin-motif__cap-top {
+  top: 0;
+}
+
+.chochin-motif__cap-bottom {
+  bottom: 0;
+}
+
+.chochin-motif__cord {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 14px;
+  background: var(--sumi);
+}
+
+/* ---------- 大将シルエットモチーフ ---------- */
+.taisho-silhouette {
+  width: 128px;
+  height: 150px;
+  position: relative;
+  margin: 0 auto 1rem;
+}
+
+.taisho-silhouette::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--yanicha);
+}
+
+.taisho-silhouette::after {
+  content: "";
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 118px;
+  height: 108px;
+  background: var(--yanicha);
+  clip-path: polygon(32% 0%, 68% 0%, 100% 100%, 0% 100%);
+}
+
+.taisho-silhouette--light::before,
+.taisho-silhouette--light::after {
+  background: var(--banju);
+}
+
+/* ---------- 写真プレースホルダー共通 ---------- */
+.photo-placeholder {
+  border: 1px dashed var(--kakuni);
+  border-radius: 6px;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.zone-night .photo-placeholder {
+  border-color: var(--edamame);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.photo-placeholder__caption {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* ---------- 食券カード（昼） ---------- */
+.ticket-card {
+  position: relative;
+  background: var(--card-paper);
+  border: 2px solid var(--kakuni);
+  padding: 1.5rem 1.4rem 1.5rem 2rem;
+  clip-path: polygon(
+    5% 0%, 100% 0%, 100% 100%, 5% 100%,
+    0% 91.7%, 5% 83.3%, 0% 75%, 5% 66.7%,
+    0% 58.3%, 5% 50%, 0% 41.7%, 5% 33.3%,
+    0% 25%, 5% 16.7%, 0% 8.3%, 5% 0%
+  );
+}
+
+.ticket-card__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--kakuni);
+  margin-bottom: 0.5rem;
+}
+
+.ticket-card__price {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--kakuni);
+  opacity: 0.85;
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .ticket-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .ticket-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------- 短冊カード（夜） ---------- */
+.tanzaku-card {
+  position: relative;
+  background: #241a10;
+  border: 1px solid var(--norenai);
+  color: var(--kinari);
+  padding: 2.1rem 1.3rem 1.4rem;
+  clip-path: polygon(0% 0%, 42% 0%, 48% 13%, 52% 13%, 58% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.tanzaku-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--beer);
+  margin-bottom: 0.5rem;
+}
+
+.tanzaku-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .tanzaku-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- クチコミカード ---------- */
+.review-card {
+  background: var(--review-paper);
+  color: var(--sumi);
+  border: 1px solid #cfc6ae;
+  border-left: 5px solid var(--chochin);
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1.6rem;
+  border-radius: 2px;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.12);
+  transform: rotate(-0.5deg);
+}
+
+.review-card:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+.review-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.85rem;
+}
+
+.review-card__author {
+  font-weight: 700;
+}
+
+.review-card__stars {
+  color: var(--beer);
+  text-shadow: 0 1px 1px rgba(43, 36, 32, 0.45);
+  letter-spacing: 0.05em;
+}
+
+.review-card__time {
+  opacity: 0.7;
+}
+
+.review-card__text {
+  white-space: pre-line;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ---------- 評価バッジ ---------- */
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--yanicha);
+  color: var(--beer);
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.zone-night .rating-badge {
+  background: var(--beer);
+  color: var(--yanicha);
+}
+
+/* ---------- カード（選ばれる理由・グリッド） ---------- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- ページヒーロー（下層ページ） ---------- */
+.page-hero {
+  background: linear-gradient(135deg, var(--yanicha) 0%, var(--norenai) 100%);
+  color: var(--kinari);
+  text-align: center;
+  padding: 3.5rem 1.25rem 3rem;
+}
+
+.page-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.9rem;
+}
+
+.page-hero p {
+  max-width: 620px;
+  margin: 0 auto;
+  opacity: 0.92;
+}
+
+.notice-banner {
+  background: var(--beer);
+  color: var(--yanicha);
+  text-align: center;
+  padding: 0.8rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+/* ---------- アンカーナビ（お品書き） ---------- */
+.anchor-nav {
+  background: var(--banju);
+  padding: 1.6rem 1.25rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- ギャラリー ---------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 560px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gallery-item {
+  border-radius: 6px;
+  padding: 2rem 1rem 1.6rem;
+  text-align: center;
+}
+
+.gallery-item--day {
+  background: var(--card-paper);
+  border: 1px solid var(--kakuni);
+  color: var(--sumi);
+}
+
+.gallery-item--night {
+  background: #241a10;
+  border: 1px solid var(--norenai);
+  color: var(--kinari);
+}
+
+.gallery-item__caption {
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+.gallery-item__note {
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* ---------- ギャラリー用簡易アイコン ---------- */
+.icon-dish {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  border: 4px solid var(--kakuni);
+  background: radial-gradient(circle, var(--card-paper) 58%, transparent 60%);
+  margin: 0 auto;
+}
+
+.icon-bowl {
+  width: 70px;
+  height: 42px;
+  margin: 8px auto 0;
+  background: var(--kakuni);
+  border-radius: 0 0 40px 40px;
+}
+
+.icon-beer {
+  width: 46px;
+  height: 66px;
+  margin: 0 auto;
+  position: relative;
+  background: linear-gradient(to top, var(--beer) 0% 22%, #f4f0e6 22% 100%);
+  border: 3px solid var(--kinari);
+  border-radius: 4px 4px 2px 2px;
+}
+
+.icon-beer::after {
+  content: "";
+  position: absolute;
+  right: -15px;
+  top: 16px;
+  width: 14px;
+  height: 28px;
+  border: 3px solid var(--kinari);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+}
+
+.icon-soup {
+  width: 54px;
+  height: 30px;
+  margin: 20px auto 0;
+  background: var(--kakuni);
+  border-radius: 0 0 30px 30px;
+  position: relative;
+}
+
+.icon-soup::before,
+.icon-soup::after {
+  content: "";
+  position: absolute;
+  top: -16px;
+  width: 3px;
+  height: 14px;
+  background: var(--kakuni);
+  opacity: 0.6;
+  border-radius: 2px;
+}
+
+.icon-soup::before {
+  left: 16px;
+  transform: rotate(-8deg);
+}
+
+.icon-soup::after {
+  right: 16px;
+  transform: rotate(8deg);
+}
+
+.icon-crowd {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.icon-crowd span {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--beer);
+  display: inline-block;
+}
+
+/* ---------- 地図埋め込み ---------- */
+.map-embed {
+  position: relative;
+  width: 100%;
+  padding-top: 68%;
+  border: 4px solid var(--norenai);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.map-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- 店舗基本情報 ---------- */
+.info-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-list dt {
+  font-weight: 700;
+  color: var(--kakuni);
+}
+
+.zone-night .info-list dt {
+  color: var(--beer);
+}
+
+.info-list dd {
+  margin: 0;
+}
+
+/* ---------- 最終CTA（提灯朱） ---------- */
+.final-cta {
+  background: var(--chochin);
+  color: #fff;
+  text-align: center;
+  padding: 4rem 1.25rem;
+}
+
+.final-cta h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  margin-bottom: 1rem;
+}
+
+.final-cta p {
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+  opacity: 0.95;
+}
+
+.final-cta__phone {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 8vw, 3.1rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.8rem;
+}
+
+.final-cta__address {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* ---------- ユーティリティ ---------- */
+.text-center {
+  text-align: center;
+}
+
+.mt-lg {
+  margin-top: 2rem;
+}
+
+.center-group {
+  justify-content: center;
+}
+
+.icon-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.noren-mini {
+  width: 70px;
+  height: 110px;
+  position: relative;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- 注記ブロック ---------- */
+.note-block {
+  background: rgba(0, 0, 0, 0.14);
+  border-radius: 6px;
+  padding: 1.5rem 1.5rem;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.zone-day .note-block {
+  background: rgba(43, 36, 32, 0.06);
+}
+
+.note-block p {
+  margin-bottom: 1rem;
+}
