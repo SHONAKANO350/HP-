@@ -1,0 +1,708 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap");
+
+/* ---------------------------------------------------
+   そば処 巴屋 試作HP スタイルシート
+   コンセプト:「手賀沼のほとりで、湯気とだんらんを。」
+   配色は plan.md 指定のカラーコードのみを使用する
+--------------------------------------------------- */
+
+:root {
+  --color-bg: #EFEAE2;
+  --color-main: #8C5A2E;
+  --color-accent1: #C4501F;
+  --color-accent2: #E3A93B;
+  --color-text: #3B2A1E;
+  --color-border: #DCCFB8;
+  --font-heading: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+  --font-body: "Noto Sans JP", "Zen Maru Gothic", sans-serif;
+  --max-width: 1080px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.8;
+  position: relative;
+  /* 手賀沼の水面をイメージした、ごく薄い一筆波紋の背景テクスチャ */
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 38px,
+    rgba(140, 90, 46, 0.035) 39px,
+    transparent 40px
+  );
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: var(--color-accent1); }
+a:hover, a:focus { color: var(--color-main); }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-main);
+  line-height: 1.5;
+  margin: 0 0 0.6em;
+}
+
+p { margin: 0 0 1em; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =====================================================
+   SAMPLE 透かし(全ページ共通・操作を妨げない)
+===================================================== */
+body::before {
+  content: "SAMPLE SAMPLE SAMPLE SAMPLE\A SAMPLE SAMPLE SAMPLE SAMPLE\A SAMPLE SAMPLE SAMPLE SAMPLE\A SAMPLE SAMPLE SAMPLE SAMPLE\A SAMPLE SAMPLE SAMPLE SAMPLE\A SAMPLE SAMPLE SAMPLE SAMPLE\A SAMPLE SAMPLE SAMPLE SAMPLE\A SAMPLE SAMPLE SAMPLE SAMPLE\A SAMPLE SAMPLE SAMPLE SAMPLE\A SAMPLE SAMPLE SAMPLE SAMPLE";
+  white-space: pre;
+  position: fixed;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  transform: rotate(-32deg);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 2.6rem;
+  line-height: 4.2rem;
+  letter-spacing: 0.6rem;
+  color: rgba(140, 90, 46, 0.07);
+  text-align: center;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+body::after {
+  content: "SAMPLE";
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(196, 80, 31, 0.9);
+  color: #EFEAE2;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(59, 42, 30, 0.3);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* =====================================================
+   ヘッダー・ナビゲーション
+===================================================== */
+.site-header {
+  background-color: var(--color-bg);
+  border-bottom: 3px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+@media (max-width: 380px) {
+  .brand { font-size: 1rem; }
+  .brand-badge { width: 34px; height: 34px; }
+  .header-tel { font-size: 0.85rem; }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: var(--color-main);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand:hover { color: var(--color-accent1); }
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--color-accent2) 0%, var(--color-main) 60%, var(--color-accent1) 100%);
+  color: #EFEAE2;
+  font-size: 1.1rem;
+}
+
+.header-tel {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-accent1);
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.header-tel::before { content: "\260E\FE0E "; }
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-main);
+  color: #EFEAE2;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.nav-toggle:hover { background: var(--color-accent1); }
+
+.site-nav {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+  background-color: var(--color-bg);
+}
+
+.site-nav.is-open { max-height: 320px; }
+
+.site-nav ul {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4px 20px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-nav a {
+  display: block;
+  padding: 10px 6px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--color-accent1);
+  font-weight: 700;
+}
+
+.site-nav a:hover { color: var(--color-accent1); }
+
+@media (min-width: 860px) {
+  .nav-toggle { display: none; }
+
+  .site-nav {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .site-nav ul {
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 20px 14px;
+  }
+
+  .site-nav a {
+    border-bottom: none;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+
+  .site-nav a:hover,
+  .site-nav a[aria-current="page"] {
+    background: var(--color-main);
+    color: #EFEAE2;
+  }
+}
+
+/* =====================================================
+   セクション共通
+===================================================== */
+.section {
+  padding: 56px 0;
+  position: relative;
+}
+
+.section--alt {
+  background-color: #F7F2EA;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-heading h2 {
+  font-size: 1.6rem;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 14px;
+}
+
+.section-heading h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-accent2), var(--color-accent1));
+}
+
+.section-lead {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 28px;
+}
+
+.page-heading {
+  padding: 44px 0 28px;
+  text-align: center;
+  background: linear-gradient(180deg, #F7EFE2 0%, var(--color-bg) 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-heading h1 { font-size: 1.9rem; margin-bottom: 10px; }
+
+.page-heading p { color: var(--color-main); margin: 0; }
+
+/* 湯気の曲線モチーフ：セクションの区切りに使う波状ディバイダー */
+.wave-divider {
+  height: 46px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-divider::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  width: 130%;
+  height: 60px;
+  background: inherit;
+  background-color: var(--color-bg);
+  border-radius: 50%;
+}
+
+.section--alt + .wave-divider::before,
+.wave-divider--alt::before { background-color: #F7F2EA; }
+
+/* =====================================================
+   丸い断面モチーフ(おでんの具・ゆで玉をイメージした円形アイコン)
+===================================================== */
+.round-icon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--color-bg) 0 28%,
+    var(--color-accent2) 28% 52%,
+    var(--color-main) 52% 74%,
+    var(--color-accent1) 74% 100%
+  );
+  box-shadow: 0 3px 8px rgba(59, 42, 30, 0.25);
+  flex-shrink: 0;
+}
+
+/* =====================================================
+   ボタン・CTA
+===================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-accent1);
+  color: #EFEAE2;
+}
+
+.btn-primary:hover { background-color: var(--color-main); color: #EFEAE2; }
+
+.btn-secondary {
+  background-color: transparent;
+  border-color: var(--color-main);
+  color: var(--color-main);
+}
+
+.btn-secondary:hover { background-color: var(--color-main); color: #EFEAE2; }
+
+.btn-tel::before { content: "\260E\FE0E"; }
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+.cta-block {
+  text-align: center;
+  padding: 48px 0;
+}
+
+.cta-block p { max-width: 480px; margin: 0 auto 20px; }
+
+/* =====================================================
+   写真プレースホルダー(実写真は一切使用しない)
+===================================================== */
+.photo-placeholder {
+  --ph-angle: 135deg;
+  position: relative;
+  min-height: 200px;
+  border-radius: 20px;
+  background: linear-gradient(var(--ph-angle), var(--color-accent2) 0%, var(--color-main) 55%, var(--color-accent1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.photo-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background-image: repeating-radial-gradient(circle at 28% 32%, rgba(239, 234, 226, 0.28) 0 7px, transparent 8px 22px);
+  opacity: 0.55;
+  z-index: 0;
+}
+
+.photo-placeholder span {
+  position: relative;
+  z-index: 1;
+  background: rgba(59, 42, 30, 0.55);
+  color: #EFEAE2;
+  padding: 0.7em 1.1em;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  text-align: center;
+  max-width: 82%;
+  line-height: 1.6;
+}
+
+.photo-placeholder.ph-alt { --ph-angle: 300deg; }
+.photo-placeholder.ph-alt2 { --ph-angle: 60deg; }
+
+/* =====================================================
+   ヒーローセクション
+===================================================== */
+.hero {
+  position: relative;
+  padding: 48px 0 76px;
+  background: linear-gradient(180deg, #F7EFE2 0%, var(--color-bg) 100%);
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -1px;
+  height: 60px;
+  background: var(--color-bg);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+.hero-inner {
+  display: grid;
+  gap: 28px;
+  align-items: center;
+}
+
+.hero-copy { text-align: center; }
+
+.hero-copy h1 {
+  font-size: 1.9rem;
+  margin-bottom: 14px;
+}
+
+.hero-copy p { font-size: 1.05rem; }
+
+.hero .photo-placeholder { min-height: 220px; margin: 0 0 24px; }
+
+@media (min-width: 760px) {
+  .hero-inner {
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+  }
+
+  .hero-copy { text-align: left; }
+
+  .hero .cta-row { justify-content: flex-start; }
+
+  .hero .photo-placeholder { margin: 0; min-height: 300px; order: 2; }
+}
+
+/* =====================================================
+   グリッドレイアウト各種
+===================================================== */
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-2 { grid-template-columns: 1fr; }
+.grid-3 { grid-template-columns: 1fr; }
+.grid-4 { grid-template-columns: 1fr; }
+
+@media (min-width: 620px) {
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 860px) {
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* 選ばれる理由カード */
+.reason-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.reason-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.reason-card p { margin: 0; font-size: 0.92rem; }
+
+/* メニューカード・料理カード共通 */
+.menu-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card .photo-placeholder { border-radius: 0; min-height: 160px; }
+
+.menu-card-body { padding: 20px; }
+
+.menu-card-body h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 8px;
+}
+
+.menu-card-body .price {
+  color: var(--color-accent1);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.menu-card-body p { margin: 0; font-size: 0.9rem; }
+
+/* =====================================================
+   お客様の声
+===================================================== */
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 8px 20px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: var(--color-main);
+}
+
+.rating-badge .stars { color: var(--color-accent2); letter-spacing: 1px; }
+
+.review-grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+
+@media (min-width: 700px) {
+  .review-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.review-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-accent2);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.review-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  color: var(--color-main);
+}
+
+.review-card .stars { color: var(--color-accent2); letter-spacing: 1px; font-size: 1rem; }
+
+.review-card-meta { color: var(--color-main); font-weight: 500; }
+
+.review-card p { margin: 0; font-size: 0.92rem; white-space: pre-line; }
+
+/* =====================================================
+   テーブル(店舗情報)
+===================================================== */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.info-table th, .info-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.info-table tr:last-child th, .info-table tr:last-child td { border-bottom: none; }
+
+.info-table th {
+  width: 34%;
+  background-color: #F7F2EA;
+  color: var(--color-main);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.info-table a { font-weight: 700; }
+
+/* =====================================================
+   地図埋め込み
+===================================================== */
+.map-frame-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 66%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.map-frame-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (min-width: 760px) {
+  .map-frame-wrap { padding-top: 42%; }
+}
+
+/* =====================================================
+   フッター
+===================================================== */
+.site-footer {
+  background-color: var(--color-main);
+  color: #F5EFE4;
+  padding: 40px 0 28px;
+  margin-top: 40px;
+}
+
+.footer-inner { text-align: center; }
+
+.site-footer p { margin: 0 0 10px; }
+
+.site-footer a { color: #F8DDBB; }
+.site-footer a:hover { color: #ffffff; }
+
+.footer-shop-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(239, 234, 226, 0.15);
+  border: 1px solid rgba(239, 234, 226, 0.4);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+}
+
+.footer-badge .stars { color: var(--color-accent2); }
+
+.footer-note {
+  font-size: 0.82rem;
+  color: #E9D9BE;
+  margin-top: 16px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+  margin: 16px 0;
+}
